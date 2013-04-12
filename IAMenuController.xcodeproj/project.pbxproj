@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D31076916CDCA3E000812B7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D31076816CDCA3E000812B7 /* Default-568h@2x.png */; };
 		4DF2A83E15B8B64A001100D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A83D15B8B64A001100D8 /* UIKit.framework */; };
 		4DF2A84015B8B64A001100D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A83F15B8B64A001100D8 /* Foundation.framework */; };
 		4DF2A84215B8B64A001100D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A84115B8B64A001100D8 /* CoreGraphics.framework */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D31076816CDCA3E000812B7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4DF2A83915B8B64A001100D8 /* IAMenuController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IAMenuController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF2A83D15B8B64A001100D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4DF2A83F15B8B64A001100D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +66,7 @@
 		4DF2A82E15B8B64A001100D8 = {
 			isa = PBXGroup;
 			children = (
+				4D31076816CDCA3E000812B7 /* Default-568h@2x.png */,
 				4DF2A86D15B8B865001100D8 /* README.md */,
 				4DF2A84315B8B64A001100D8 /* IAMenuController */,
 				4DF2A83C15B8B64A001100D8 /* Frameworks */,
@@ -147,7 +150,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = IA;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mark Adams";
 			};
 			buildConfigurationList = 4DF2A83315B8B64A001100D8 /* Build configuration list for PBXProject "IAMenuController" */;
@@ -175,6 +178,7 @@
 				4DF2A84815B8B64A001100D8 /* InfoPlist.strings in Resources */,
 				4DF2A86815B8B6AC001100D8 /* MainStoryboard.storyboard in Resources */,
 				4DF2A86E15B8B865001100D8 /* README.md in Resources */,
+				4D31076916CDCA3E000812B7 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +219,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -242,6 +249,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -298,6 +308,7 @@
 				4DF2A85915B8B64B001100D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
