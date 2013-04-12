@@ -50,19 +50,11 @@
     self.possibleColors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor brownColor], [UIColor orangeColor], nil];
 }
 
-- (IAMenuController *)slideoutMenuController
-{
-    if ([self.parentViewController isKindOfClass:[IAMenuController class]])
-        return (IAMenuController *)self.parentViewController;
-    
-    return nil;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MainViewController *mvc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
     mvc.view.backgroundColor = [self.possibleColors randomObject];
-    self.slideoutMenuController.contentViewController = mvc;
+    self.menuController.contentViewController = mvc;
 }
 
 @end

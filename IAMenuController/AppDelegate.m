@@ -20,9 +20,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    
     MainViewController *mvc = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mvc];
+
     ListViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"ListViewController"];
-    IAMenuController *drawerController = [[IAMenuController alloc] initWithMenuViewController:lvc contentViewController:mvc barButtonItem:nil];
+    IAMenuController *drawerController = [[IAMenuController alloc] initWithMenuViewController:lvc contentViewController:nav];
     
     self.window.rootViewController = drawerController;
     self.window.backgroundColor = [UIColor whiteColor];

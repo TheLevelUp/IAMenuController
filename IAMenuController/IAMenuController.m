@@ -10,11 +10,9 @@
 
 @interface IAMenuController ()
 
-@property (nonatomic, strong) UIViewController *menuViewController;
 @property (nonatomic, strong) UIBarButtonItem *menuBarButtonItem;
-
-@property (nonatomic, strong) UINavigationBar *navigationBar;
 @property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, assign) BOOL menuIsVisible;
 
 - (void)setupViewControllers;
 - (void)setupMenuViewController;
@@ -36,18 +34,9 @@
 
 @implementation IAMenuController
 
-#pragma mark Public Properties
-@synthesize contentViewController;
-
-#pragma mark Private Properties
-@synthesize menuViewController;
-@synthesize menuBarButtonItem;
-
-@synthesize navigationBar;
-@synthesize contentView;
-
 #pragma mark - Initialization
-- (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content barButtonItem:(UIBarButtonItem *)barButtonItem;
+
+- (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content;
 {
     NSParameterAssert(menu && content);
     
@@ -56,45 +45,20 @@
     if (!self)
         return nil;
     
-    menuViewController = menu;
-    contentViewController = content;
-    menuBarButtonItem = barButtonItem;
-    
+    _menuViewController = menu;
+    _contentViewController = content;
+
     return self;
-}
-
-#pragma mark - Getters
-- (UIBarButtonItem *)menuBarButtonItem
-{
-    if (!menuBarButtonItem)
-        menuBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.menuViewController.title style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu:)];
-
-    return menuBarButtonItem;
-}
-
-- (UINavigationBar *)navigationBar
-{
-    if (!navigationBar)
-    {
-        navigationBar = self.navigationController.navigationBar;
-        
-        if (!navigationBar)
-            navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
-    }
-    
-    [navigationBar pushNavigationItem:self.navigationItem animated:NO];
-    
-    return navigationBar;
 }
 
 #pragma mark - Setters
 - (void)setContentViewController:(UIViewController *)controller
 {
-    if (controller == contentViewController)
+    if (controller == _contentViewController)
         return;
     
-    UIViewController *oldContent = contentViewController;
-    contentViewController = controller;
+    UIViewController *oldContent = _contentViewController;
+    _contentViewController = controller;
     
     [self removeTapToDismissGestureRecognizer];
     [oldContent willMoveToParentViewController:nil];
@@ -107,16 +71,16 @@
         [oldContent viewDidDisappear:YES];
         [oldContent removeFromParentViewController];
         
-        [self addChildViewController:contentViewController];
-        [contentViewController viewWillAppear:YES];
-        [self.contentView addSubview:contentViewController.view];
-        [self resizeViewForContentView:contentViewController.view];
-        [contentViewController didMoveToParentViewController:self];
+        [self addChildViewController:_contentViewController];
+        [_contentViewController viewWillAppear:YES];
+        [self.contentView addSubview:_contentViewController.view];
+        [self resizeViewForContentView:_contentViewController.view];
+        [_contentViewController didMoveToParentViewController:self];
         
         [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
-            [contentViewController viewDidAppear:YES];
+            [_contentViewController viewDidAppear:YES];
         }];
     }];
 }
@@ -175,7 +139,6 @@
 {
     self.contentView = [[UIView alloc] initWithFrame:self.view.bounds];
     [self addPanGestureRecognizer];
-    [self.contentView addSubview:self.navigationBar];
     [self.contentView addSubview:self.contentViewController.view];
     [self resizeViewForContentView:self.contentViewController.view];
     [self.view addSubview:self.contentView];
@@ -199,12 +162,13 @@
 - (void)addPanGestureRecognizer
 {
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    pan.cancelsTouchesInView = YES;
     [self.contentView addGestureRecognizer:pan];
 }
 
 - (void)addTapToDismissGestureRecognizer
 {
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu)];
     [self.contentView addGestureRecognizer:tap];
 }
 
@@ -216,32 +180,44 @@
 }
 
 #pragma mark - Menu Presentation
-- (void)showMenu:(UIBarButtonItem *)sender
+
+- (void)toggleMenu
 {
+    (self.menuIsVisible)? [self hideMenu] : [self showMenu];
+}
+
+- (void)showMenu
+{
+    self.menuIsVisible = YES;
     [self.menuViewController viewWillAppear:YES];
-    
+
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
     [UIView animateWithDuration:0.25 animations:^{
         self.contentView.frame = [self contentViewFrameForOpenMenu];
     } completion:^(BOOL finished) {
         [self.menuViewController viewDidAppear:YES];
         [self addTapToDismissGestureRecognizer];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
 }
 
-- (void)hideMenu:(UIGestureRecognizer *)gesture
+- (void)hideMenu
 {
     [self.menuViewController viewWillDisappear:YES];
-    
+
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
     [UIView animateWithDuration:0.25 animations:^{
         self.contentView.frame = [self contentViewFrameForClosedMenu];
     }completion:^(BOOL finished) {
         [self.menuViewController viewDidDisappear:YES];
         [self removeTapToDismissGestureRecognizer];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
+
+    self.menuIsVisible = NO;
 }
-
-#pragma mark - Content View Presentation
-
 
 #pragma mark - Pan Gesture Support
 - (void)pan:(UIPanGestureRecognizer *)pan
@@ -272,6 +248,9 @@
     }
     else if (pan.state == UIGestureRecognizerStateEnded)
     {
+        if (CGRectGetMinX(self.contentView.frame) == 0.0f)
+            return;
+        
         CGFloat finalX = self.contentView.frame.origin.x + (0.55 * velocity.x);
         
         BOOL shouldBounce = NO;
@@ -352,13 +331,19 @@
 
 - (void)resizeViewForContentView:(UIView *)view
 {
-    view.frame = CGRectMake(0.0f, 44.0f, 320.0f, 416.0f);
+    view.frame = self.view.bounds;
 }
 
 @end
 
+@implementation UIViewController (IAMenuController)
 
+- (IAMenuController *)menuController
+{
+  if ([self.parentViewController isKindOfClass:[IAMenuController class]])
+    return (IAMenuController *)self.parentViewController;
 
+  return nil;
+}
 
-
-
+@end

@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "IAMenuController.h"
 
 @implementation MainViewController
 
@@ -42,6 +43,8 @@
 {
     [super viewDidLoad];
     //self.view.backgroundColor = [UIColor blackColor];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self.menuController action:@selector(toggleMenu)];
+    self.navigationItem.leftBarButtonItem = barButton;
 }
 
 

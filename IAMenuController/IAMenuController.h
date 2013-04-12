@@ -10,8 +10,16 @@
 
 @interface IAMenuController : UIViewController
 
+@property (nonatomic, strong, readonly) UIViewController *menuViewController;
 @property (nonatomic, strong) UIViewController *contentViewController;
 
-- (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content barButtonItem:(UIBarButtonItem *)barButtonItem;
+- (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content;
+- (void)toggleMenu;
+
+@end
+
+@interface UIViewController (IAMenuController)
+
+- (IAMenuController *)menuController;
 
 @end
