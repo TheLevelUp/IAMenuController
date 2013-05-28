@@ -318,10 +318,13 @@
 
 - (IAMenuController *)menuController
 {
-  if ([self.parentViewController isKindOfClass:[IAMenuController class]])
-    return (IAMenuController *)self.parentViewController;
+    if ([self.parentViewController isKindOfClass:[IAMenuController class]])
+        return (IAMenuController *)self.parentViewController;
 
-  return nil;
+    if ([self.parentViewController isKindOfClass:[UINavigationController class]] && [self.parentViewController.parentViewController isKindOfClass:[IAMenuController class]])
+        return (IAMenuController *)self.parentViewController.parentViewController;
+
+    return nil;
 }
 
 @end
