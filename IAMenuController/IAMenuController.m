@@ -252,11 +252,6 @@
             return;
         
         CGFloat finalX = self.contentView.frame.origin.x + (0.55 * velocity.x);
-        
-        BOOL shouldBounce = NO;
-        
-        if (finalX < minimumX || finalX > maximumX)
-            shouldBounce = YES;
 
         if (finalX >= CGRectGetMidX(self.view.frame))
             finalX = maximumX;
@@ -266,28 +261,11 @@
             [self.menuViewController viewWillDisappear:YES];
         }
         
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGFloat bounceX;
-            
-            if (finalX == minimumX)
-                bounceX = minimumX - 10.0f;
-            else
-                bounceX = maximumX + 10.0f;
-            
+        [UIView animateWithDuration:0.2 delay:0.0 options:0 animations:^{
             CGRect frame = self.contentView.frame;
-            frame.origin.x = (shouldBounce) ? bounceX : finalX;
+            frame.origin.x = finalX;
             self.contentView.frame = frame;
         } completion:^(BOOL finished) {
-            
-            if (shouldBounce)
-            {
-                [UIView animateWithDuration:0.07 animations:^{
-                    CGRect frame = self.contentView.frame;
-                    frame.origin.x = finalX;
-                    self.contentView.frame = frame;
-                }];
-            }
-            
             if (finalX == maximumX)
             {
                 [self.menuViewController viewDidAppear:YES];
