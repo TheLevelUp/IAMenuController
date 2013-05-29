@@ -1,17 +1,18 @@
 //
-//  IASlideoutMenuController.h
-//  IADrawerController
+//  IAMenuController.h
+//  IAMenuController
 //
 //  Created by Mark Adams on 12/16/11.
-//  BSD License
+//  MIT License
 //
 
 #import <UIKit/UIKit.h>
 
 @interface IAMenuController : UIViewController
 
-@property (nonatomic, strong, readonly) UIViewController *menuViewController;
+@property (nonatomic, strong) UIViewController *menuViewController;
 @property (nonatomic, strong) UIViewController *contentViewController;
+@property (nonatomic, assign) BOOL menuIsVisible;
 
 - (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content;
 - (void)toggleMenu;

@@ -1,9 +1,9 @@
 //
-//  IASlideoutMenuController.m
-//  IADrawerController
+//  IAMenuController.m
+//  IAMenuController
 //
 //  Created by Mark Adams on 12/16/11.
-//  BSD License
+//  MIT License
 //
 
 #import "IAMenuController.h"
@@ -11,23 +11,7 @@
 
 @interface IAMenuController ()
 
-@property (nonatomic, strong) UIBarButtonItem *menuBarButtonItem;
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, assign) BOOL menuIsVisible;
-
-- (void)setupViewControllers;
-- (void)setupMenuViewController;
-- (void)setupContentViewController;
-- (void)setupContentView;
-
-- (void)addPanGestureRecognizer;
-- (void)addTapToDismissGestureRecognizer;
-- (void)removeTapToDismissGestureRecognizer;
-
-- (CGRect)contentViewFrameForOpenMenu;
-- (CGRect)contentViewFrameForClosedMenu;
-- (CGRect)contentViewFrameForStaging;
-- (void)resizeViewForContentView:(UIView *)view;
 
 @end
 
@@ -53,6 +37,7 @@
 }
 
 #pragma mark - Setters
+
 - (void)setContentViewController:(UIViewController *)controller
 {
     if (controller == _contentViewController)
@@ -86,32 +71,15 @@
     }];
 }
 
-#pragma mark - UIViewController Rotation Overrides
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self.menuViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self.contentViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-}
+#pragma mark - UIViewController
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (NSUInteger)supportedInterfaceOrientations
 {
-    [self.menuViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self.contentViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.menuViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self.contentViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-}
-
-#pragma mark - UIViewController Containment Overrides
-- (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers
-{
-    return NO;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - View Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -127,8 +95,6 @@
 
 - (void)setupContentViewController
 {
-    self.navigationItem.title = self.contentViewController.title;
-    self.navigationItem.leftBarButtonItem = self.menuBarButtonItem;
     [self addChildViewController:self.contentViewController];
     [self.contentViewController viewWillAppear:NO];
     [self setupContentView];
@@ -139,16 +105,17 @@
 - (void)setupContentView
 {
     self.contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+    
     [self addPanGestureRecognizer];
     [self.contentView addSubview:self.contentViewController.view];
     [self resizeViewForContentView:self.contentViewController.view];
     [self.view addSubview:self.contentView];
     
-    self.contentView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    self.contentView.layer.shadowOffset = CGSizeMake(-4.0f, 0.0f);
+    self.contentView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.contentView.layer.shadowOffset = CGSizeMake(-2.0f, 0.0f);
     self.contentView.layer.shadowOpacity = 0.75f;
     self.contentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.contentView.frame].CGPath;
-    self.contentView.layer.shadowRadius = 4.0f;
+    self.contentView.layer.shadowRadius = 3.0f;
 }
 
 - (void)setupMenuViewController
@@ -194,7 +161,7 @@
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.225 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentView.frame = [self contentViewFrameForOpenMenu];
     } completion:^(BOOL finished) {
         [self.menuViewController viewDidAppear:YES];
@@ -209,9 +176,9 @@
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.225 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentView.frame = [self contentViewFrameForClosedMenu];
-    }completion:^(BOOL finished) {
+    } completion:^(BOOL finished) {
         [self.menuViewController viewDidDisappear:YES];
         [self removeTapToDismissGestureRecognizer];
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
@@ -253,16 +220,29 @@
             return;
         
         CGFloat finalX = self.contentView.frame.origin.x + (0.55 * velocity.x);
+        CGFloat travelDistance;
 
         if (finalX >= CGRectGetMidX(self.view.frame))
+        {
             finalX = maximumX;
+            travelDistance = maximumX - CGRectGetMinX(self.contentView.frame);
+        }
         else
         {
             finalX = minimumX;
+            travelDistance = minimumX + CGRectGetMinX(self.contentView.frame);
             [self.menuViewController viewWillDisappear:YES];
         }
+
+        NSTimeInterval duration = (travelDistance / ABS(velocity.x));
+
+        if (duration < 0.1) {
+            duration = 0.1;
+        } else if (duration > 0.25) {
+            duration = 0.25;
+        }
         
-        [UIView animateWithDuration:0.2 delay:0.0 options:0 animations:^{
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             CGRect frame = self.contentView.frame;
             frame.origin.x = finalX;
             self.contentView.frame = frame;

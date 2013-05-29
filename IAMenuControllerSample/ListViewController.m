@@ -1,9 +1,9 @@
 //
 //  ListViewController.m
-//  IADrawerController
+//  IAMenuController
 //
 //  Created by Mark Adams on 12/9/11.
-//  BSD License
+//  MIT License
 //
 
 #import "ListViewController.h"
@@ -22,7 +22,7 @@
 
 - (id)randomObject
 {
-    NSUInteger randomInteger = arc4random() % self.count;
+    NSUInteger randomInteger = arc4random_uniform(self.count);
     return [self objectAtIndex:randomInteger];
 }
 

@@ -2,4 +2,4 @@ IAMenuController is a UIViewController container class that encapsulates the beh
 
 Initialize IAMenuController with a menu view controller, a content view controller and an optional UIBarButtonItem to trigger the reveal.
 
-BSD License
+MIT License

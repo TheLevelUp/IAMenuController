@@ -20,7 +20,6 @@
 		4DF2A86915B8B6AC001100D8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A86215B8B6AC001100D8 /* MainViewController.m */; };
 		4DF2A86A15B8B6AC001100D8 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A86415B8B6AC001100D8 /* TestViewController.m */; };
 		4DF2A86C15B8B6BB001100D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A86B15B8B6BB001100D8 /* QuartzCore.framework */; };
-		4DF2A86E15B8B865001100D8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2A86D15B8B865001100D8 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +34,8 @@
 		4DF2A84B15B8B64B001100D8 /* IAMenuController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IAMenuController-Prefix.pch"; sourceTree = "<group>"; };
 		4DF2A85A15B8B6AC001100D8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4DF2A85B15B8B6AC001100D8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMenuController.h; sourceTree = "<group>"; };
-		4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMenuController.m; sourceTree = "<group>"; };
+		4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMenuController.h; path = ../IAMenuController/IAMenuController.h; sourceTree = "<group>"; };
+		4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMenuController.m; path = ../IAMenuController/IAMenuController.m; sourceTree = "<group>"; };
 		4DF2A85E15B8B6AC001100D8 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		4DF2A85F15B8B6AC001100D8 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		4DF2A86015B8B6AC001100D8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -45,7 +44,6 @@
 		4DF2A86315B8B6AC001100D8 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		4DF2A86415B8B6AC001100D8 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		4DF2A86B15B8B6BB001100D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4DF2A86D15B8B865001100D8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +61,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D30BDDA1755E5FC007DB892 /* IAMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */,
+				4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */,
+			);
+			name = IAMenuController;
+			sourceTree = "<group>";
+		};
 		4DF2A82E15B8B64A001100D8 = {
 			isa = PBXGroup;
 			children = (
-				4D31076816CDCA3E000812B7 /* Default-568h@2x.png */,
-				4DF2A86D15B8B865001100D8 /* README.md */,
-				4DF2A84315B8B64A001100D8 /* IAMenuController */,
+				4D30BDDA1755E5FC007DB892 /* IAMenuController */,
+				4DF2A84315B8B64A001100D8 /* IAMenuControllerSample */,
 				4DF2A83C15B8B64A001100D8 /* Frameworks */,
 				4DF2A83A15B8B64A001100D8 /* Products */,
 			);
@@ -93,13 +99,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4DF2A84315B8B64A001100D8 /* IAMenuController */ = {
+		4DF2A84315B8B64A001100D8 /* IAMenuControllerSample */ = {
 			isa = PBXGroup;
 			children = (
+				4D31076816CDCA3E000812B7 /* Default-568h@2x.png */,
 				4DF2A85A15B8B6AC001100D8 /* AppDelegate.h */,
 				4DF2A85B15B8B6AC001100D8 /* AppDelegate.m */,
-				4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */,
-				4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */,
 				4DF2A85E15B8B6AC001100D8 /* ListViewController.h */,
 				4DF2A85F15B8B6AC001100D8 /* ListViewController.m */,
 				4DF2A86015B8B6AC001100D8 /* MainStoryboard.storyboard */,
@@ -109,6 +114,7 @@
 				4DF2A86415B8B6AC001100D8 /* TestViewController.m */,
 				4DF2A84415B8B64A001100D8 /* Supporting Files */,
 			);
+			name = IAMenuControllerSample;
 			path = IAMenuController;
 			sourceTree = "<group>";
 		};
@@ -177,7 +183,6 @@
 			files = (
 				4DF2A84815B8B64A001100D8 /* InfoPlist.strings in Resources */,
 				4DF2A86815B8B6AC001100D8 /* MainStoryboard.storyboard in Resources */,
-				4DF2A86E15B8B865001100D8 /* README.md in Resources */,
 				4D31076916CDCA3E000812B7 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
