@@ -249,11 +249,13 @@
         } completion:^(BOOL finished) {
             if (finalX == maximumX)
             {
+                self.menuIsVisible = YES;
                 [self.menuViewController viewDidAppear:YES];
                 [self addTapToDismissGestureRecognizer];
             }
             else if (finalX == 0.0f)
             {
+                self.menuIsVisible = NO;
                 [self.menuViewController viewDidDisappear:YES];
                 [self removeTapToDismissGestureRecognizer];
             }
