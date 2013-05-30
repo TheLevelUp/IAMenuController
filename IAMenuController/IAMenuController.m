@@ -67,6 +67,7 @@
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
             [_contentViewController viewDidAppear:YES];
+            self.menuIsVisible = NO;
         }];
     }];
 }
