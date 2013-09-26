@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const IAMenuWillOpenNotification;
+extern NSString *const IAMenuDidOpenNotification;
+extern NSString *const IAMenuWillCloseNotification;
+extern NSString *const IAMenuDidCloseNotification;
+
 @interface IAMenuController : UIViewController
 
 @property (nonatomic, strong) UIViewController *menuViewController;

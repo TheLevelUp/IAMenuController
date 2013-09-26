@@ -9,6 +9,11 @@
 #import "IAMenuController.h"
 #import <QuartzCore/QuartzCore.h>
 
+NSString *const IAMenuWillOpenNotification = @"IAMenuWillOpenNotification";
+NSString *const IAMenuDidOpenNotification = @"IAMenuDidOpenNotification";
+NSString *const IAMenuWillCloseNotification = @"IAMenuWillCloseNotification";
+NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
+
 @interface IAMenuController ()
 
 @property (nonatomic, strong) UIView *contentView;
@@ -160,6 +165,8 @@
     self.menuIsVisible = YES;
     [self.menuViewController viewWillAppear:YES];
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuWillOpenNotification object:nil];
+
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
     [UIView animateWithDuration:0.225 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -168,12 +175,15 @@
         [self.menuViewController viewDidAppear:YES];
         [self addTapToDismissGestureRecognizer];
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidOpenNotification object:nil];
     }];
 }
 
 - (void)hideMenu
 {
     [self.menuViewController viewWillDisappear:YES];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuWillCloseNotification object:nil];
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
@@ -183,6 +193,7 @@
         [self.menuViewController viewDidDisappear:YES];
         [self removeTapToDismissGestureRecognizer];
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidCloseNotification object:nil];
     }];
 
     self.menuIsVisible = NO;
