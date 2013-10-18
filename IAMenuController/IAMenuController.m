@@ -153,6 +153,38 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
             [self.contentView removeGestureRecognizer:recognizer];
 }
 
+#pragma mark - Menu State
+
+- (void)menuWillOpen
+{
+    self.menuIsVisible = YES;
+    [self.menuViewController viewWillAppear:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuWillOpenNotification object:nil];
+}
+
+- (void)menuDidOpen
+{
+    self.menuIsVisible = YES;
+    [self.menuViewController viewDidAppear:YES];
+    [self addTapToDismissGestureRecognizer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidOpenNotification object:nil];
+}
+
+- (void)menuWillClose
+{
+    self.menuIsVisible = NO;
+    [self.menuViewController viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuWillCloseNotification object:nil];
+}
+
+- (void)menuDidClose
+{
+    self.menuIsVisible = NO;
+    [self.menuViewController viewDidDisappear:YES];
+    [self removeTapToDismissGestureRecognizer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidCloseNotification object:nil];
+}
+
 #pragma mark - Menu Presentation
 
 - (void)toggleMenu
@@ -162,41 +194,30 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 
 - (void)showMenu
 {
-    self.menuIsVisible = YES;
-    [self.menuViewController viewWillAppear:YES];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuWillOpenNotification object:nil];
+    [self menuWillOpen];
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
     [UIView animateWithDuration:0.225 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentView.frame = [self contentViewFrameForOpenMenu];
     } completion:^(BOOL finished) {
-        [self.menuViewController viewDidAppear:YES];
-        [self addTapToDismissGestureRecognizer];
+        [self menuDidOpen];
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidOpenNotification object:nil];
     }];
 }
 
 - (void)hideMenu
 {
-    [self.menuViewController viewWillDisappear:YES];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuWillCloseNotification object:nil];
+    [self menuWillClose];
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
     [UIView animateWithDuration:0.225 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentView.frame = [self contentViewFrameForClosedMenu];
     } completion:^(BOOL finished) {
-        [self.menuViewController viewDidDisappear:YES];
-        [self removeTapToDismissGestureRecognizer];
+        [self menuDidClose];
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidCloseNotification object:nil];
     }];
-
-    self.menuIsVisible = NO;
 }
 
 #pragma mark - Pan Gesture Support
@@ -238,12 +259,13 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         {
             finalX = maximumX;
             travelDistance = maximumX - CGRectGetMinX(self.contentView.frame);
+            [self menuWillOpen];
         }
         else
         {
             finalX = minimumX;
             travelDistance = minimumX + CGRectGetMinX(self.contentView.frame);
-            [self.menuViewController viewWillDisappear:YES];
+            [self menuWillClose];
         }
 
         NSTimeInterval duration = (travelDistance / ABS(velocity.x));
@@ -261,15 +283,11 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         } completion:^(BOOL finished) {
             if (finalX == maximumX)
             {
-                self.menuIsVisible = YES;
-                [self.menuViewController viewDidAppear:YES];
-                [self addTapToDismissGestureRecognizer];
+                [self menuDidOpen];
             }
             else if (finalX == 0.0f)
             {
-                self.menuIsVisible = NO;
-                [self.menuViewController viewDidDisappear:YES];
-                [self removeTapToDismissGestureRecognizer];
+                [self menuDidClose];
             }
         }];
     }
