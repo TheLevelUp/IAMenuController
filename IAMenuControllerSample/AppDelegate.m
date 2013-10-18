@@ -16,6 +16,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:) name:IAMenuWillOpenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:) name:IAMenuDidOpenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:) name:IAMenuWillCloseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:) name:IAMenuDidCloseNotification object:nil];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     
@@ -29,6 +34,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)menuDidPostNotification:(NSNotification *)notification
+{
+    NSLog(@"%@", notification);
 }
 
 @end
