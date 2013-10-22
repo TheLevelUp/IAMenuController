@@ -14,6 +14,7 @@
 		4DF2A84815B8B64A001100D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2A84615B8B64A001100D8 /* InfoPlist.strings */; };
 		4DF2A86815B8B6AC001100D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2A86015B8B6AC001100D8 /* MainStoryboard.storyboard */; };
 		4DF2A86C15B8B6BB001100D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A86B15B8B6BB001100D8 /* QuartzCore.framework */; };
+		F8519E211816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8519E201816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m */; };
 		F8FD6E9817C4061400D9B7E6 /* IAMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */; };
 		F8FD6E9917C4061400D9B7E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A85B15B8B6AC001100D8 /* AppDelegate.m */; };
 		F8FD6E9A17C4061400D9B7E6 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A85F15B8B6AC001100D8 /* ListViewController.m */; };
@@ -44,6 +45,8 @@
 		4DF2A86315B8B6AC001100D8 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		4DF2A86415B8B6AC001100D8 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		4DF2A86B15B8B6BB001100D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F8519E1F1816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAScreenEdgeGestureRecognizer.h; sourceTree = "<group>"; };
+		F8519E201816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAScreenEdgeGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 			children = (
 				4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */,
 				4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */,
+				F8519E1F1816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.h */,
+				F8519E201816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m */,
 			);
 			name = IAMenuController;
 			path = ../IAMenuController;
@@ -197,6 +202,7 @@
 				F8FD6E9817C4061400D9B7E6 /* IAMenuController.m in Sources */,
 				F8FD6E9917C4061400D9B7E6 /* AppDelegate.m in Sources */,
 				F8FD6E9A17C4061400D9B7E6 /* ListViewController.m in Sources */,
+				F8519E211816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m in Sources */,
 				F8FD6E9B17C4061400D9B7E6 /* MainViewController.m in Sources */,
 				F8FD6E9C17C4061400D9B7E6 /* TestViewController.m in Sources */,
 				F8FD6E9D17C4061400D9B7E6 /* main.m in Sources */,

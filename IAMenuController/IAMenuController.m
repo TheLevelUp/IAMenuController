@@ -6,8 +6,9 @@
 //  MIT License
 //
 
-#import "IAMenuController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "IAMenuController.h"
+#import "IAScreenEdgeGestureRecognizer.h"
 
 NSString *const IAMenuWillOpenNotification = @"IAMenuWillOpenNotification";
 NSString *const IAMenuDidOpenNotification = @"IAMenuDidOpenNotification";
@@ -135,8 +136,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 #pragma mark - Gesture Management
 - (void)addPanGestureRecognizer
 {
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-    pan.cancelsTouchesInView = YES;
+    IAScreenEdgeGestureRecognizer *pan = [[IAScreenEdgeGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [self.contentView addGestureRecognizer:pan];
 }
 

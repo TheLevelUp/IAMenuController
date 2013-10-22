@@ -8,6 +8,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/21x9/IAMenuController.git", :tag => "#{s.version}" }
   s.platform     = :ios, '6.0'
   s.requires_arc = true
-  s.source_files = 'IAMenuController/IAMenuController.{h,m}'
+  s.source_files = 'IAMenuController/**/*.{h,m}'
   s.framework    = 'QuartzCore'
 end
