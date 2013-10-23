@@ -18,6 +18,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 @interface IAMenuController ()
 
 @property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *tapInterceptView;
 
 @end
 
@@ -52,7 +53,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     UIViewController *oldContent = _contentViewController;
     _contentViewController = controller;
     
-    [self removeTapToDismissGestureRecognizer];
+    [self removeTapInterceptView];
     [oldContent willMoveToParentViewController:nil];
     [oldContent viewWillDisappear:YES];
     
@@ -134,23 +135,33 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 }
 
 #pragma mark - Gesture Management
+
 - (void)addPanGestureRecognizer
 {
     IAScreenEdgeGestureRecognizer *pan = [[IAScreenEdgeGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [self.contentView addGestureRecognizer:pan];
 }
 
-- (void)addTapToDismissGestureRecognizer
+- (void)addTapInterceptView
 {
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu)];
-    [self.contentView addGestureRecognizer:tap];
+    [self.contentView addSubview:self.tapInterceptView];
 }
 
-- (void)removeTapToDismissGestureRecognizer
+- (void)removeTapInterceptView
 {
-    for (UIGestureRecognizer *recognizer in self.contentView.gestureRecognizers)
-        if ([recognizer isKindOfClass:[UITapGestureRecognizer class]])
-            [self.contentView removeGestureRecognizer:recognizer];
+    [self.tapInterceptView removeFromSuperview];
+}
+
+- (UIView *)tapInterceptView {
+    if (!_tapInterceptView) {
+        CGRect frame = {{0, 0}, self.contentView.frame.size};
+        _tapInterceptView = [[UIView alloc] initWithFrame:frame];
+        _tapInterceptView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu)];
+        [_tapInterceptView addGestureRecognizer:tap];
+    }
+
+    return _tapInterceptView;
 }
 
 #pragma mark - Menu State
@@ -166,7 +177,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 {
     self.menuIsVisible = YES;
     [self.menuViewController viewDidAppear:YES];
-    [self addTapToDismissGestureRecognizer];
+    [self addTapInterceptView];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidOpenNotification object:nil];
 }
 
@@ -181,7 +192,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 {
     self.menuIsVisible = NO;
     [self.menuViewController viewDidDisappear:YES];
-    [self removeTapToDismissGestureRecognizer];
+    [self removeTapInterceptView];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAMenuDidCloseNotification object:nil];
 }
 
