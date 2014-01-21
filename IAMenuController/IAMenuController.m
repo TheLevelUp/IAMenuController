@@ -134,6 +134,10 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     [self.menuViewController didMoveToParentViewController:self];
 }
 
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
+    return NO;
+}
+
 #pragma mark - Gesture Management
 
 - (void)addPanGestureRecognizer

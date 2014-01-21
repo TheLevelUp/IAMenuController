@@ -11,4 +11,8 @@
 
 @implementation MainViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 @end
