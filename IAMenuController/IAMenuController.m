@@ -81,7 +81,9 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
+
             if (SYSTEM_VERSION_LESS_THAN_5_0) [_contentViewController viewDidAppear:YES];
+
             self.menuIsVisible = NO;
         }];
     }];
@@ -112,7 +114,9 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 - (void)setupContentViewController
 {
     [self addChildViewController:self.contentViewController];
+
     if (SYSTEM_VERSION_LESS_THAN_5_0) [self.contentViewController viewWillAppear:NO];
+
     [self setupContentView];
     [self.contentViewController viewDidAppear:NO];
     [self.contentViewController didMoveToParentViewController:self];
