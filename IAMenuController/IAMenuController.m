@@ -10,9 +10,6 @@
 #import "IAMenuController.h"
 #import "IAScreenEdgeGestureRecognizer.h"
 
-#define SYSTEM_VERSION_LESS_THAN(v)([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_5_0 SYSTEM_VERSION_LESS_THAN(@"5.0")
-
 NSString *const IAMenuWillOpenNotification = @"IAMenuWillOpenNotification";
 NSString *const IAMenuDidOpenNotification = @"IAMenuDidOpenNotification";
 NSString *const IAMenuWillCloseNotification = @"IAMenuWillCloseNotification";
@@ -58,22 +55,17 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     
     [self removeTapInterceptView];
     [oldContent willMoveToParentViewController:nil];
-
-    if (SYSTEM_VERSION_LESS_THAN_5_0) [oldContent viewWillDisappear:YES];
+    [oldContent viewWillDisappear:YES];
     
     [UIView animateWithDuration:0.2 delay:0.0 options:0 animations:^{
         self.contentView.frame = [self contentViewFrameForStaging];
     } completion:^(BOOL finished) {
         [oldContent.view removeFromSuperview];
-
-        if (SYSTEM_VERSION_LESS_THAN_5_0) [oldContent viewDidDisappear:YES];
-
+        [oldContent viewDidDisappear:YES];
         [oldContent removeFromParentViewController];
         
         [self addChildViewController:_contentViewController];
-
-        if (SYSTEM_VERSION_LESS_THAN_5_0) [_contentViewController viewWillAppear:YES];
-
+        [_contentViewController viewWillAppear:YES];
         [self.contentView addSubview:_contentViewController.view];
         [self resizeViewForContentView:_contentViewController.view];
         [_contentViewController didMoveToParentViewController:self];
@@ -81,9 +73,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
-
-            if (SYSTEM_VERSION_LESS_THAN_5_0) [_contentViewController viewDidAppear:YES];
-
+            [_contentViewController viewDidAppear:YES];
             self.menuIsVisible = NO;
         }];
     }];
@@ -114,9 +104,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 - (void)setupContentViewController
 {
     [self addChildViewController:self.contentViewController];
-
-    if (SYSTEM_VERSION_LESS_THAN_5_0) [self.contentViewController viewWillAppear:NO];
-
+    [self.contentViewController viewWillAppear:NO];
     [self setupContentView];
     [self.contentViewController viewDidAppear:NO];
     [self.contentViewController didMoveToParentViewController:self];
@@ -144,6 +132,10 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     self.menuViewController.view.frame = self.view.bounds;
     [self.view insertSubview:self.menuViewController.view belowSubview:self.contentView];
     [self.menuViewController didMoveToParentViewController:self];
+}
+
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
+    return NO;
 }
 
 #pragma mark - Gesture Management
