@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "IAMenuController"
-  s.version      = "0.2.2"
+  s.version      = "0.2.3"
   s.summary      = "A simple slide out menu controller container."
   s.homepage     = "https://github.com/21x9/IAMenuController"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
