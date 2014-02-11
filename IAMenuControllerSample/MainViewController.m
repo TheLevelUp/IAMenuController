@@ -11,8 +11,11 @@
 
 @implementation MainViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    UIBarButtonItem *toggleMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.menuController action:@selector(toggleMenu)];
+    self.navigationItem.leftBarButtonItem = toggleMenuButton;
 }
 
 @end

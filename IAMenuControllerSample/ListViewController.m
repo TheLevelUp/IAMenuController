@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     self.tableView.showsVerticalScrollIndicator = NO;
-    
+
     self.possibleColors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor brownColor], [UIColor orangeColor], nil];
 }
 

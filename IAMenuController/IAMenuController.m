@@ -31,12 +31,12 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 - (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content;
 {
     NSParameterAssert(menu && content);
-    
+
     self = [super init];
-    
+
     if (!self)
         return nil;
-    
+
     _menuViewController = menu;
     _contentViewController = content;
 
@@ -49,31 +49,27 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 {
     if (controller == _contentViewController)
         return;
-    
+
     UIViewController *oldContent = _contentViewController;
     _contentViewController = controller;
-    
+
     [self removeTapInterceptView];
     [oldContent willMoveToParentViewController:nil];
-    [oldContent viewWillDisappear:YES];
-    
+
     [UIView animateWithDuration:0.2 delay:0.0 options:0 animations:^{
         self.contentView.frame = [self contentViewFrameForStaging];
     } completion:^(BOOL finished) {
         [oldContent.view removeFromSuperview];
-        [oldContent viewDidDisappear:YES];
         [oldContent removeFromParentViewController];
-        
+
         [self addChildViewController:_contentViewController];
-        [_contentViewController viewWillAppear:YES];
         [self.contentView addSubview:_contentViewController.view];
         [self resizeViewForContentView:_contentViewController.view];
         [_contentViewController didMoveToParentViewController:self];
-        
+
         [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
-            [_contentViewController viewDidAppear:YES];
             self.menuIsVisible = NO;
         }];
     }];
@@ -113,12 +109,12 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 - (void)setupContentView
 {
     self.contentView = [[UIView alloc] initWithFrame:self.view.bounds];
-    
+
     [self addPanGestureRecognizer];
     [self.contentView addSubview:self.contentViewController.view];
     [self resizeViewForContentView:self.contentViewController.view];
     [self.view addSubview:self.contentView];
-    
+
     self.contentView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.contentView.layer.shadowOffset = CGSizeMake(-2.0f, 0.0f);
     self.contentView.layer.shadowOpacity = 0.75f;
@@ -132,10 +128,6 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     self.menuViewController.view.frame = self.view.bounds;
     [self.view insertSubview:self.menuViewController.view belowSubview:self.contentView];
     [self.menuViewController didMoveToParentViewController:self];
-}
-
-- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
-    return NO;
 }
 
 #pragma mark - Gesture Management
@@ -240,25 +232,23 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 {
     CGPoint translation = [pan translationInView:self.contentView];
     CGPoint velocity = [pan velocityInView:self.contentView];
-    
+
     CGFloat minimumX = 0.0f;
     CGFloat maximumX = 276.0f;
-    
+
     if (pan.state == UIGestureRecognizerStateBegan)
     {
         if (translation.x < minimumX)
             return;
-        
-        [self.menuViewController viewWillAppear:YES];
     }
     else if (pan.state == UIGestureRecognizerStateChanged)
     {
         CGRect currentFrame = self.contentView.frame;
         CGFloat newX = currentFrame.origin.x + translation.x;
-        
+
         if (newX < minimumX || newX > maximumX)
             return;
-        
+
         currentFrame.origin.x = currentFrame.origin.x + translation.x;
         self.contentView.frame = currentFrame;
     }
@@ -266,7 +256,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     {
         if (CGRectGetMinX(self.contentView.frame) == 0.0f)
             return;
-        
+
         CGFloat finalX = self.contentView.frame.origin.x + (0.55 * velocity.x);
         CGFloat travelDistance;
 
@@ -290,7 +280,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         } else if (duration > 0.25) {
             duration = 0.25;
         }
-        
+
         [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             CGRect frame = self.contentView.frame;
             frame.origin.x = finalX;
@@ -306,7 +296,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
             }
         }];
     }
-    
+
     [pan setTranslation:CGPointZero inView:self.contentView];
 }
 
@@ -315,15 +305,15 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 {
     CGRect frame = self.contentView.frame;
     frame.origin.x = 276.0f;
-    
+
     return frame;
 }
-     
+
 - (CGRect)contentViewFrameForClosedMenu
 {
     CGRect frame = self.contentView.frame;
     frame.origin.x = 0.0f;
-    
+
     return frame;
 }
 
@@ -331,7 +321,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 {
     CGRect frame = self.contentView.frame;
     frame.origin.x = CGRectGetMaxX(self.view.frame) + 44.0f;
-    
+
     return frame;
 }
 
