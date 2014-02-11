@@ -55,13 +55,11 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     
     [self removeTapInterceptView];
     [oldContent willMoveToParentViewController:nil];
-    [oldContent viewWillDisappear:YES];
-    
+
     [UIView animateWithDuration:0.2 delay:0.0 options:0 animations:^{
         self.contentView.frame = [self contentViewFrameForStaging];
     } completion:^(BOOL finished) {
         [oldContent.view removeFromSuperview];
-        [oldContent viewDidDisappear:YES];
         [oldContent removeFromParentViewController];
         
         [self addChildViewController:_contentViewController];
@@ -73,7 +71,6 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
-            [_contentViewController viewDidAppear:YES];
             self.menuIsVisible = NO;
         }];
     }];
