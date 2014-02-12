@@ -55,17 +55,14 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     
     [self removeTapInterceptView];
     [oldContent willMoveToParentViewController:nil];
-    [oldContent viewWillDisappear:YES];
-    
+
     [UIView animateWithDuration:0.2 delay:0.0 options:0 animations:^{
         self.contentView.frame = [self contentViewFrameForStaging];
     } completion:^(BOOL finished) {
         [oldContent.view removeFromSuperview];
-        [oldContent viewDidDisappear:YES];
         [oldContent removeFromParentViewController];
         
         [self addChildViewController:_contentViewController];
-        [_contentViewController viewWillAppear:YES];
         [self.contentView addSubview:_contentViewController.view];
         [self resizeViewForContentView:_contentViewController.view];
         [_contentViewController didMoveToParentViewController:self];
@@ -73,7 +70,6 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
         [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
             self.contentView.frame = [self contentViewFrameForClosedMenu];
         } completion:^(BOOL finished) {
-            [_contentViewController viewDidAppear:YES];
             self.menuIsVisible = NO;
         }];
     }];
@@ -132,10 +128,6 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     self.menuViewController.view.frame = self.view.bounds;
     [self.view insertSubview:self.menuViewController.view belowSubview:self.contentView];
     [self.menuViewController didMoveToParentViewController:self];
-}
-
-- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
-    return NO;
 }
 
 #pragma mark - Gesture Management
@@ -247,9 +239,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     if (pan.state == UIGestureRecognizerStateBegan)
     {
         if (translation.x < minimumX)
-            return;
-        
-        [self.menuViewController viewWillAppear:YES];
+            return;        
     }
     else if (pan.state == UIGestureRecognizerStateChanged)
     {
