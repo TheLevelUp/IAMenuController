@@ -239,9 +239,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     if (pan.state == UIGestureRecognizerStateBegan)
     {
         if (translation.x < minimumX)
-            return;
-        
-        [self.menuViewController viewWillAppear:YES];
+            return;        
     }
     else if (pan.state == UIGestureRecognizerStateChanged)
     {
