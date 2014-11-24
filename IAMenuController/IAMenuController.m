@@ -14,6 +14,7 @@ NSString *const IAMenuWillOpenNotification = @"IAMenuWillOpenNotification";
 NSString *const IAMenuDidOpenNotification = @"IAMenuDidOpenNotification";
 NSString *const IAMenuWillCloseNotification = @"IAMenuWillCloseNotification";
 NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
+float const IAMenuPercentOfScreenUsedByMenuView = .75;
 
 @interface IAMenuController ()
 
@@ -234,7 +235,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     CGPoint velocity = [pan velocityInView:self.contentView];
 
     CGFloat minimumX = 0.0f;
-    CGFloat maximumX = 276.0f;
+    CGFloat maximumX = [UIScreen mainScreen].bounds.size.width * IAMenuPercentOfScreenUsedByMenuView;;
 
     if (pan.state == UIGestureRecognizerStateBegan)
     {
