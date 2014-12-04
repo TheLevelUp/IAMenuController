@@ -1,10 +1,9 @@
-//
-//  AppDelegate.h
-//  IAMenuController
-//
-//  Created by Mark Adams on 12/8/11.
-//  MIT License
-//
+/* AppDelegate.h
+ * IAMenuController
+ *
+ * Created by Mark Adams on 12/8/11.
+ * MIT License
+ */
 
 #import <UIKit/UIKit.h>
 

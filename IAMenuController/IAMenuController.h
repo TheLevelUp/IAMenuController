@@ -1,10 +1,9 @@
-//
-//  IAMenuController.h
-//  IAMenuController
-//
-//  Created by Mark Adams on 12/16/11.
-//  MIT License
-//
+/* IAMenuController.h
+ * IAMenuController
+ *
+ * Created by Mark Adams on 12/16/11.
+ * MIT License
+ */
 
 #import <UIKit/UIKit.h>
 
@@ -18,6 +17,7 @@ extern NSString *const IAMenuDidCloseNotification;
 @property (nonatomic, strong) UIViewController *menuViewController;
 @property (nonatomic, strong) UIViewController *contentViewController;
 @property (nonatomic, assign) BOOL menuIsVisible;
+@property (nonatomic, assign) CGFloat percentageOfScreenWidthUsedByMenu;
 
 - (id)initWithMenuViewController:(UIViewController *)menu contentViewController:(UIViewController *)content;
 - (void)toggleMenu;

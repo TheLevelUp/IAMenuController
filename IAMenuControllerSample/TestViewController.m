@@ -1,10 +1,9 @@
-//
-//  TestViewController.m
-//  IAMenuController
-//
-//  Created by Mark Adams on 12/9/11.
-//  MIT License
-//
+/* TestViewController.m
+ * IAMenuController
+ *
+ * Created by Mark Adams on 12/9/11.
+ * MIT License
+ */
 
 #import "TestViewController.h"
 
