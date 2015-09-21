@@ -74,7 +74,7 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
 
 #pragma mark - UIViewController
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
   return UIInterfaceOrientationMaskPortrait;
 }
 
