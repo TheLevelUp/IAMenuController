@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ED1F7DF2143476D008FF7A2 /* IAMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1F7DE2143476D008FF7A2 /* IAMenuController.swift */; };
+		3ED1F7E2214368DF008FF7A2 /* IAScreenEdgeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1F7E02143660C008FF7A2 /* IAScreenEdgeGestureRecognizer.swift */; };
 		4D31076916CDCA3E000812B7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D31076816CDCA3E000812B7 /* Default-568h@2x.png */; };
 		4DF2A83E15B8B64A001100D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A83D15B8B64A001100D8 /* UIKit.framework */; };
 		4DF2A84015B8B64A001100D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A83F15B8B64A001100D8 /* Foundation.framework */; };
@@ -14,8 +16,6 @@
 		4DF2A84815B8B64A001100D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2A84615B8B64A001100D8 /* InfoPlist.strings */; };
 		4DF2A86815B8B6AC001100D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2A86015B8B6AC001100D8 /* MainStoryboard.storyboard */; };
 		4DF2A86C15B8B6BB001100D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF2A86B15B8B6BB001100D8 /* QuartzCore.framework */; };
-		F8519E211816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8519E201816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m */; };
-		F8FD6E9817C4061400D9B7E6 /* IAMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */; };
 		F8FD6E9917C4061400D9B7E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A85B15B8B6AC001100D8 /* AppDelegate.m */; };
 		F8FD6E9A17C4061400D9B7E6 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A85F15B8B6AC001100D8 /* ListViewController.m */; };
 		F8FD6E9B17C4061400D9B7E6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2A86215B8B6AC001100D8 /* MainViewController.m */; };
@@ -24,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3ED1F7DE2143476D008FF7A2 /* IAMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAMenuController.swift; sourceTree = "<group>"; };
+		3ED1F7E02143660C008FF7A2 /* IAScreenEdgeGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAScreenEdgeGestureRecognizer.swift; sourceTree = "<group>"; };
 		4D31076816CDCA3E000812B7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4DF2A83915B8B64A001100D8 /* IAMenuController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IAMenuController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF2A83D15B8B64A001100D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -35,8 +37,6 @@
 		4DF2A84B15B8B64B001100D8 /* IAMenuController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IAMenuController-Prefix.pch"; sourceTree = "<group>"; };
 		4DF2A85A15B8B6AC001100D8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4DF2A85B15B8B6AC001100D8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMenuController.h; path = ../IAMenuController/IAMenuController.h; sourceTree = "<group>"; };
-		4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMenuController.m; path = ../IAMenuController/IAMenuController.m; sourceTree = "<group>"; };
 		4DF2A85E15B8B6AC001100D8 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		4DF2A85F15B8B6AC001100D8 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		4DF2A86015B8B6AC001100D8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -45,8 +45,6 @@
 		4DF2A86315B8B6AC001100D8 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		4DF2A86415B8B6AC001100D8 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		4DF2A86B15B8B6BB001100D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F8519E1F1816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAScreenEdgeGestureRecognizer.h; sourceTree = "<group>"; };
-		F8519E201816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAScreenEdgeGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +65,8 @@
 		4D30BDDA1755E5FC007DB892 /* IAMenuController */ = {
 			isa = PBXGroup;
 			children = (
-				4DF2A85C15B8B6AC001100D8 /* IAMenuController.h */,
-				4DF2A85D15B8B6AC001100D8 /* IAMenuController.m */,
-				F8519E1F1816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.h */,
-				F8519E201816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m */,
+				3ED1F7DE2143476D008FF7A2 /* IAMenuController.swift */,
+				3ED1F7E02143660C008FF7A2 /* IAScreenEdgeGestureRecognizer.swift */,
 			);
 			name = IAMenuController;
 			path = ../IAMenuController;
@@ -161,8 +157,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = IA;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Mark Adams";
+				TargetAttributes = {
+					4DF2A83815B8B64A001100D8 = {
+						LastSwiftMigration = 0940;
+					};
+				};
 			};
 			buildConfigurationList = 4DF2A83315B8B64A001100D8 /* Build configuration list for PBXProject "IAMenuController" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -199,10 +200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FD6E9817C4061400D9B7E6 /* IAMenuController.m in Sources */,
 				F8FD6E9917C4061400D9B7E6 /* AppDelegate.m in Sources */,
 				F8FD6E9A17C4061400D9B7E6 /* ListViewController.m in Sources */,
-				F8519E211816FBA100B73B83 /* IAScreenEdgeGestureRecognizer.m in Sources */,
+				3ED1F7DF2143476D008FF7A2 /* IAMenuController.swift in Sources */,
+				3ED1F7E2214368DF008FF7A2 /* IAScreenEdgeGestureRecognizer.swift in Sources */,
 				F8FD6E9B17C4061400D9B7E6 /* MainViewController.m in Sources */,
 				F8FD6E9C17C4061400D9B7E6 /* TestViewController.m in Sources */,
 				F8FD6E9D17C4061400D9B7E6 /* main.m in Sources */,
@@ -227,17 +228,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -245,11 +262,16 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -257,23 +279,42 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -281,10 +322,16 @@
 		4DF2A85815B8B64B001100D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IAMenuController-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/IAMenuController-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.interstellarapps.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -292,10 +339,15 @@
 		4DF2A85915B8B64B001100D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IAMenuController-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/IAMenuController-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.interstellarapps.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -6,9 +6,9 @@
  */
 
 #import "AppDelegate.h"
-#import "IAMenuController.h"
 #import "ListViewController.h"
 #import "MainViewController.h"
+#import "IAMenuController-Swift.h"
 
 @implementation AppDelegate
 
@@ -17,13 +17,13 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:)
-                                               name:IAMenuWillOpenNotification object:nil];
+                                               name:IAMenuController.iAMenuWillOpenNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:)
-                                               name:IAMenuDidOpenNotification object:nil];
+                                               name:IAMenuController.iAMenuDidOpenNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:)
-                                               name:IAMenuWillCloseNotification object:nil];
+                                               name:IAMenuController.iAMenuWillCloseNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:)
-                                               name:IAMenuDidCloseNotification object:nil];
+                                               name:IAMenuController.iAMenuDidCloseNotification object:nil];
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 

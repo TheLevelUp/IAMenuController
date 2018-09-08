@@ -6,7 +6,7 @@
  */
 
 #import "MainViewController.h"
-#import "IAMenuController.h"
+#import "IAMenuController-Swift.h"
 
 @implementation MainViewController
 
