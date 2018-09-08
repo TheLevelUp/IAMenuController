@@ -6,7 +6,7 @@
  */
 
 #import "ListViewController.h"
-#import "IAMenuController.h"
+#import "IAMenuController-Swift.h"
 #import "MainViewController.h"
 
 @interface NSArray (RandomObject)
