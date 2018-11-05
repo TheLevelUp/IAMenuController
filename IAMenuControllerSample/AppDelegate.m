@@ -12,8 +12,7 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidPostNotification:)
@@ -40,8 +39,7 @@
   return YES;
 }
 
-- (void)menuDidPostNotification:(NSNotification *)notification
-{
+- (void)menuDidPostNotification:(NSNotification *)notification {
   NSLog(@"%@", notification);
 }
 

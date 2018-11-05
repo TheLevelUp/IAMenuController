@@ -59,10 +59,10 @@ NSString *const IAMenuDidCloseNotification = @"IAMenuDidCloseNotification";
     [oldContent.view removeFromSuperview];
     [oldContent removeFromParentViewController];
 
-    [self addChildViewController:_contentViewController];
-    [self.contentView addSubview:_contentViewController.view];
-    [self resizeViewForContentView:_contentViewController.view];
-    [_contentViewController didMoveToParentViewController:self];
+    [self addChildViewController:self.contentViewController];
+    [self.contentView addSubview:self.contentViewController.view];
+    [self resizeViewForContentView:self.contentViewController.view];
+    [self.contentViewController didMoveToParentViewController:self];
 
     [UIView animateWithDuration:0.22 delay:0.1 options:0 animations:^{
       self.contentView.frame = [self contentViewFrameForClosedMenu];

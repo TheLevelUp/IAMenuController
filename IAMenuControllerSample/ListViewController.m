@@ -20,7 +20,7 @@
 @implementation NSArray (RandomObject)
 
 - (id)randomObject {
-  NSUInteger randomInteger = arc4random_uniform(self.count);
+  NSUInteger randomInteger = (NSUInteger)arc4random_uniform((u_int32_t)self.count);
   return [self objectAtIndex:randomInteger];
 }
 
