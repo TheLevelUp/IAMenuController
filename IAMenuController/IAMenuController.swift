@@ -14,29 +14,29 @@ open class IAMenuController: UIViewController {
 
   // MARK: -
 
-  @objc open let menuViewController: UIViewController
-  @objc open var contentViewController: UIViewController {
+  @objc public let menuViewController: UIViewController
+  @objc public var contentViewController: UIViewController {
     willSet {
       let oldContent = self.contentViewController
 
       removeTapInterceptView()
-      oldContent.willMove(toParentViewController: nil)
+      oldContent.willMove(toParent: nil)
 
       UIView.animate(withDuration: 0.2,
                      animations: {
                       self.contentView.frame = self.contentViewFrameForStaging()
       }) { (finished) in
         oldContent.view.removeFromSuperview()
-        oldContent.removeFromParentViewController()
+        oldContent.removeFromParent()
 
-        self.addChildViewController(newValue)
+        self.addChild(newValue)
         self.contentView.addSubview(newValue.view)
         self.resizeViewFor(contentView: newValue.view)
-        newValue.didMove(toParentViewController: self)
+        newValue.didMove(toParent: self)
 
         UIView.animate(withDuration: 0.22,
                        delay: 0.1,
-                       options: UIViewAnimationOptions.curveLinear,
+                       options: UIView.AnimationOptions.curveLinear,
                        animations: {
                         self.contentView.frame = self.contentViewFrameForClosedMenu()
         }, completion: { (finished) in
@@ -48,7 +48,7 @@ open class IAMenuController: UIViewController {
 
   @objc open var contentView: UIView
   @objc open var menuIsVisible: Bool = false
-  @objc open let percentageOfScreenWidthUsedByMenu: CGFloat = 86.25
+  @objc public let percentageOfScreenWidthUsedByMenu: CGFloat = 86.25
   private var tapInterceptView: UIView?
 
   // MARK: - Initialization
@@ -96,18 +96,18 @@ open class IAMenuController: UIViewController {
   }
 
   private func setupContentViewController() {
-    addChildViewController(contentViewController)
+    addChild(contentViewController)
     contentViewController.viewWillAppear(false)
     setupContentView()
     contentViewController.viewDidAppear(false)
-    contentViewController.didMove(toParentViewController: self)
+    contentViewController.didMove(toParent: self)
   }
 
   private func setupMenuViewController() {
-    addChildViewController(menuViewController)
+    addChild(menuViewController)
     menuViewController.view.frame = view.bounds
     view.insertSubview(menuViewController.view, belowSubview: contentView)
-    menuViewController.didMove(toParentViewController: self)
+    menuViewController.didMove(toParent: self)
   }
 
   private func setupTapInterceptView() {
